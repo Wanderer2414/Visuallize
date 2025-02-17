@@ -37,10 +37,14 @@ add_library(Button Button.cpp)
 target_include_directories(Button PUBLIC ${LIB})
 target_link_libraries(Button Controller MouseHandler)
 
+add_library(Node Node.cpp)
+target_include_directories(Node PUBLIC ${LIB})
+target_link_libraries(Node Circle)
+
 add_library(Form Form.cpp)
 target_include_directories(Form PUBLIC ${LIB})
 target_link_libraries(Form Controller)
 
 add_library(MainForm VisuallizationBST.cpp)
 target_include_directories(MainForm PUBLIC ${LIB})
-target_link_libraries(MainForm Form Textbox Button RRectangle)
+target_link_libraries(MainForm Form Textbox Button RRectangle Node)

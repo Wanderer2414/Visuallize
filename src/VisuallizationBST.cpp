@@ -1,6 +1,7 @@
 #include "../include/VisuallizationBST.h"
 #include <SFML/Graphics/Color.hpp>
 #include <stdexcept>
+#include <iostream>
 VisuallizationForm::VisuallizationForm(sf::RenderTarget& target):
             Form(target, nullptr, m_clock),
             addBox(target, this, m_add_text,m_clock),
@@ -14,6 +15,7 @@ VisuallizationForm::VisuallizationForm(sf::RenderTarget& target):
     addBox.text().setFillColor(sf::Color::Black);
     addBox.text().setFont(m_font);
     addBox.text().setPosition(15,20);
+    addBox.isOk = addBox_Ok;
     addReg.setFillColor(sf::Color::White);
     setFPS(20);
     children.add(&addTouch);
@@ -23,6 +25,19 @@ VisuallizationForm::VisuallizationForm(sf::RenderTarget& target):
 bool VisuallizationForm::addTouch_onClick(sf::RenderTarget &target, const MouseEventHandler &handler) {
     auto form = (VisuallizationForm*)handler.parent;
     form->addBox.enter();
+    return true;
+}
+bool VisuallizationForm::addBox_Ok(sf::RenderTarget &target, const TextboxEventHandler &handler) {
+    VisuallizationForm* form = (VisuallizationForm*)handler.parent;
+    Node* node = new Node(target, form, 50, form->m_font, form->m_clock);
+    if (form->m_nodes.size()) {
+        auto tmp = form->m_nodes.back();
+        if (tmp) node->setPosition(tmp->getPosition().x, tmp->getPosition().y + 150);
+    } else node->setPosition(100, 100);
+    node->setText(handler.content);
+    node->m_text.setFillColor(sf::Color::Black);
+    form->m_nodes.push_back(node);
+    form->children.add(node);
     return true;
 }
 bool VisuallizationForm::catchEvent(const sf::Event& event) {
@@ -35,5 +50,5 @@ bool VisuallizationForm::focus() {
     return false;
 }
 VisuallizationForm::~VisuallizationForm() {
-    
+    for (auto i:m_nodes) delete i;
 }

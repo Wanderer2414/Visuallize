@@ -42,7 +42,7 @@ cmake_ninja_workdir = /home/nguyenlequochuy/projects/cpp_sfml/VisuallizeBST/buil
 #############################################
 # Order-only phony target for VisuallizationBST
 
-build cmake_object_order_depends_target_VisuallizationBST: phony || cmake_object_order_depends_target_Button cmake_object_order_depends_target_Controller cmake_object_order_depends_target_EventHandler cmake_object_order_depends_target_Form cmake_object_order_depends_target_MainForm cmake_object_order_depends_target_MouseHandler cmake_object_order_depends_target_RRectangle cmake_object_order_depends_target_Rectangle cmake_object_order_depends_target_TextHandler cmake_object_order_depends_target_Textbox
+build cmake_object_order_depends_target_VisuallizationBST: phony || cmake_object_order_depends_target_Button cmake_object_order_depends_target_Circle cmake_object_order_depends_target_Controller cmake_object_order_depends_target_EventHandler cmake_object_order_depends_target_Form cmake_object_order_depends_target_MainForm cmake_object_order_depends_target_MouseHandler cmake_object_order_depends_target_Node cmake_object_order_depends_target_RRectangle cmake_object_order_depends_target_Rectangle cmake_object_order_depends_target_TextHandler cmake_object_order_depends_target_Textbox
 
 build CMakeFiles/VisuallizationBST.dir/src/main.cpp.o: CXX_COMPILER__VisuallizationBST_unscanned_ /home/nguyenlequochuy/projects/cpp_sfml/VisuallizeBST/src/main.cpp || cmake_object_order_depends_target_VisuallizationBST
   DEP_FILE = CMakeFiles/VisuallizationBST.dir/src/main.cpp.o.d
@@ -58,10 +58,10 @@ build CMakeFiles/VisuallizationBST.dir/src/main.cpp.o: CXX_COMPILER__Visuallizat
 #############################################
 # Link the executable VisuallizationBST
 
-build VisuallizationBST: CXX_EXECUTABLE_LINKER__VisuallizationBST_ CMakeFiles/VisuallizationBST.dir/src/main.cpp.o | /usr/lib/libsfml-graphics.so.2.6.2 /usr/lib/libsfml-window.so.2.6.2 /usr/lib/libsfml-system.so.2.6.2 src/libTextbox.a src/libMainForm.a src/libTextbox.a src/libTextHandler.a src/libRectangle.a src/libForm.a src/libButton.a src/libController.a src/libMouseHandler.a src/libEventHandler.a src/libRRectangle.a || src/libButton.a src/libController.a src/libEventHandler.a src/libForm.a src/libMainForm.a src/libMouseHandler.a src/libRRectangle.a src/libRectangle.a src/libTextHandler.a src/libTextbox.a
+build VisuallizationBST: CXX_EXECUTABLE_LINKER__VisuallizationBST_ CMakeFiles/VisuallizationBST.dir/src/main.cpp.o | /usr/lib/libsfml-graphics.so.2.6.2 /usr/lib/libsfml-window.so.2.6.2 /usr/lib/libsfml-system.so.2.6.2 src/libTextbox.a src/libMainForm.a src/libTextbox.a src/libTextHandler.a src/libRectangle.a src/libForm.a src/libButton.a src/libController.a src/libMouseHandler.a src/libEventHandler.a src/libRRectangle.a src/libNode.a src/libCircle.a || src/libButton.a src/libCircle.a src/libController.a src/libEventHandler.a src/libForm.a src/libMainForm.a src/libMouseHandler.a src/libNode.a src/libRRectangle.a src/libRectangle.a src/libTextHandler.a src/libTextbox.a
   DEP_FILE = CMakeFiles/VisuallizationBST.dir/link.d
   LINK_FLAGS = -Wl,--dependency-file=CMakeFiles/VisuallizationBST.dir/link.d
-  LINK_LIBRARIES = /usr/lib/libsfml-graphics.so.2.6.2  /usr/lib/libsfml-window.so.2.6.2  /usr/lib/libsfml-system.so.2.6.2  src/libTextbox.a  src/libMainForm.a  src/libTextbox.a  src/libTextHandler.a  src/libRectangle.a  src/libForm.a  src/libButton.a  src/libController.a  src/libMouseHandler.a  src/libEventHandler.a  src/libRRectangle.a
+  LINK_LIBRARIES = /usr/lib/libsfml-graphics.so.2.6.2  /usr/lib/libsfml-window.so.2.6.2  /usr/lib/libsfml-system.so.2.6.2  src/libTextbox.a  src/libMainForm.a  src/libTextbox.a  src/libTextHandler.a  src/libRectangle.a  src/libForm.a  src/libButton.a  src/libController.a  src/libMouseHandler.a  src/libEventHandler.a  src/libRRectangle.a  src/libNode.a  src/libCircle.a
   OBJECT_DIR = CMakeFiles/VisuallizationBST.dir
   POST_BUILD = :
   PRE_LINK = :
@@ -278,6 +278,36 @@ build src/libRRectangle.a: CXX_STATIC_LIBRARY_LINKER__RRectangle_ src/CMakeFiles
   TARGET_PDB = RRectangle.a.dbg
 
 # =============================================================================
+# Object build statements for STATIC_LIBRARY target Circle
+
+
+#############################################
+# Order-only phony target for Circle
+
+build cmake_object_order_depends_target_Circle: phony || .
+
+build src/CMakeFiles/Circle.dir/Circle.cpp.o: CXX_COMPILER__Circle_unscanned_ /home/nguyenlequochuy/projects/cpp_sfml/VisuallizeBST/src/Circle.cpp || cmake_object_order_depends_target_Circle
+  DEP_FILE = src/CMakeFiles/Circle.dir/Circle.cpp.o.d
+  INCLUDES = -I/home/nguyenlequochuy/projects/cpp_sfml/VisuallizeBST/include
+  OBJECT_DIR = src/CMakeFiles/Circle.dir
+  OBJECT_FILE_DIR = src/CMakeFiles/Circle.dir
+
+
+# =============================================================================
+# Link build statements for STATIC_LIBRARY target Circle
+
+
+#############################################
+# Link the static library src/libCircle.a
+
+build src/libCircle.a: CXX_STATIC_LIBRARY_LINKER__Circle_ src/CMakeFiles/Circle.dir/Circle.cpp.o
+  OBJECT_DIR = src/CMakeFiles/Circle.dir
+  POST_BUILD = :
+  PRE_LINK = :
+  TARGET_FILE = src/libCircle.a
+  TARGET_PDB = Circle.a.dbg
+
+# =============================================================================
 # Object build statements for STATIC_LIBRARY target Textbox
 
 
@@ -338,6 +368,36 @@ build src/libButton.a: CXX_STATIC_LIBRARY_LINKER__Button_ src/CMakeFiles/Button.
   TARGET_PDB = Button.a.dbg
 
 # =============================================================================
+# Object build statements for STATIC_LIBRARY target Node
+
+
+#############################################
+# Order-only phony target for Node
+
+build cmake_object_order_depends_target_Node: phony || cmake_object_order_depends_target_Circle
+
+build src/CMakeFiles/Node.dir/Node.cpp.o: CXX_COMPILER__Node_unscanned_ /home/nguyenlequochuy/projects/cpp_sfml/VisuallizeBST/src/Node.cpp || cmake_object_order_depends_target_Node
+  DEP_FILE = src/CMakeFiles/Node.dir/Node.cpp.o.d
+  INCLUDES = -I/home/nguyenlequochuy/projects/cpp_sfml/VisuallizeBST/include
+  OBJECT_DIR = src/CMakeFiles/Node.dir
+  OBJECT_FILE_DIR = src/CMakeFiles/Node.dir
+
+
+# =============================================================================
+# Link build statements for STATIC_LIBRARY target Node
+
+
+#############################################
+# Link the static library src/libNode.a
+
+build src/libNode.a: CXX_STATIC_LIBRARY_LINKER__Node_ src/CMakeFiles/Node.dir/Node.cpp.o || src/libCircle.a
+  OBJECT_DIR = src/CMakeFiles/Node.dir
+  POST_BUILD = :
+  PRE_LINK = :
+  TARGET_FILE = src/libNode.a
+  TARGET_PDB = Node.a.dbg
+
+# =============================================================================
 # Object build statements for STATIC_LIBRARY target Form
 
 
@@ -374,7 +434,7 @@ build src/libForm.a: CXX_STATIC_LIBRARY_LINKER__Form_ src/CMakeFiles/Form.dir/Fo
 #############################################
 # Order-only phony target for MainForm
 
-build cmake_object_order_depends_target_MainForm: phony || cmake_object_order_depends_target_Button cmake_object_order_depends_target_Controller cmake_object_order_depends_target_EventHandler cmake_object_order_depends_target_Form cmake_object_order_depends_target_MouseHandler cmake_object_order_depends_target_RRectangle cmake_object_order_depends_target_Rectangle cmake_object_order_depends_target_TextHandler cmake_object_order_depends_target_Textbox
+build cmake_object_order_depends_target_MainForm: phony || cmake_object_order_depends_target_Button cmake_object_order_depends_target_Circle cmake_object_order_depends_target_Controller cmake_object_order_depends_target_EventHandler cmake_object_order_depends_target_Form cmake_object_order_depends_target_MouseHandler cmake_object_order_depends_target_Node cmake_object_order_depends_target_RRectangle cmake_object_order_depends_target_Rectangle cmake_object_order_depends_target_TextHandler cmake_object_order_depends_target_Textbox
 
 build src/CMakeFiles/MainForm.dir/VisuallizationBST.cpp.o: CXX_COMPILER__MainForm_unscanned_ /home/nguyenlequochuy/projects/cpp_sfml/VisuallizeBST/src/VisuallizationBST.cpp || cmake_object_order_depends_target_MainForm
   DEP_FILE = src/CMakeFiles/MainForm.dir/VisuallizationBST.cpp.o.d
@@ -390,7 +450,7 @@ build src/CMakeFiles/MainForm.dir/VisuallizationBST.cpp.o: CXX_COMPILER__MainFor
 #############################################
 # Link the static library src/libMainForm.a
 
-build src/libMainForm.a: CXX_STATIC_LIBRARY_LINKER__MainForm_ src/CMakeFiles/MainForm.dir/VisuallizationBST.cpp.o || src/libButton.a src/libController.a src/libEventHandler.a src/libForm.a src/libMouseHandler.a src/libRRectangle.a src/libRectangle.a src/libTextHandler.a src/libTextbox.a
+build src/libMainForm.a: CXX_STATIC_LIBRARY_LINKER__MainForm_ src/CMakeFiles/MainForm.dir/VisuallizationBST.cpp.o || src/libButton.a src/libCircle.a src/libController.a src/libEventHandler.a src/libForm.a src/libMouseHandler.a src/libNode.a src/libRRectangle.a src/libRectangle.a src/libTextHandler.a src/libTextbox.a
   OBJECT_DIR = src/CMakeFiles/MainForm.dir
   POST_BUILD = :
   PRE_LINK = :
@@ -426,6 +486,8 @@ build src/rebuild_cache: phony src/CMakeFiles/rebuild_cache.util
 
 build Button: phony src/libButton.a
 
+build Circle: phony src/libCircle.a
+
 build Controller: phony src/libController.a
 
 build EventHandler: phony src/libEventHandler.a
@@ -435,6 +497,8 @@ build Form: phony src/libForm.a
 build MainForm: phony src/libMainForm.a
 
 build MouseHandler: phony src/libMouseHandler.a
+
+build Node: phony src/libNode.a
 
 build RRectangle: phony src/libRRectangle.a
 
@@ -446,6 +510,8 @@ build Textbox: phony src/libTextbox.a
 
 build libButton.a: phony src/libButton.a
 
+build libCircle.a: phony src/libCircle.a
+
 build libController.a: phony src/libController.a
 
 build libEventHandler.a: phony src/libEventHandler.a
@@ -455,6 +521,8 @@ build libForm.a: phony src/libForm.a
 build libMainForm.a: phony src/libMainForm.a
 
 build libMouseHandler.a: phony src/libMouseHandler.a
+
+build libNode.a: phony src/libNode.a
 
 build libRRectangle.a: phony src/libRRectangle.a
 
@@ -479,7 +547,7 @@ build all: phony VisuallizationBST src/all
 #############################################
 # Folder: /home/nguyenlequochuy/projects/cpp_sfml/VisuallizeBST/build/src
 
-build src/all: phony src/libController.a src/libEventHandler.a src/libTextHandler.a src/libMouseHandler.a src/libRectangle.a src/libRRectangle.a src/libTextbox.a src/libButton.a src/libForm.a src/libMainForm.a
+build src/all: phony src/libController.a src/libEventHandler.a src/libTextHandler.a src/libMouseHandler.a src/libRectangle.a src/libRRectangle.a src/libCircle.a src/libTextbox.a src/libButton.a src/libNode.a src/libForm.a src/libMainForm.a
 
 # =============================================================================
 # Built-in targets

@@ -1,5 +1,6 @@
 #include "../include/Node.h"
 #include <SFML/Graphics/RenderTarget.hpp>
+#include <SFML/System/Vector2.hpp>
 
 Node::Node(sf::RenderTarget& target,  void* m_parent, const float& radius, const sf::Font& font, size_t& clock):
         Controller(target, m_parent, clock),
@@ -20,6 +21,9 @@ void Node::setPosition(const float& x, const float& y) {
 void Node::draw(sf::RenderTarget& target, sf::RenderStates states) const {
     target.draw(m_circle);
     target.draw(m_text);
+}
+sf::Vector2f Node::getPosition() const {
+    return m_circle.getPosition();
 }
 
 bool Node::catchEvent(const sf::Event& event) {

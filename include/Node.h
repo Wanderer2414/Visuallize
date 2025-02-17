@@ -5,19 +5,22 @@
 #include <SFML/Graphics/RenderStates.hpp>
 #include <SFML/Graphics/RenderTarget.hpp>
 #include <SFML/Graphics/Text.hpp>
+#include <SFML/System/Vector2.hpp>
 #include <string>
 class Node : public Controller {
-    Node(sf::RenderTarget& target, void* m_parent, const float& radus, const sf::Font& font, size_t& clock);
+public:
+    Node(sf::RenderTarget& target, void* m_parent, const float& radius, const sf::Font& font, size_t& clock);
 
     virtual bool        catchEvent(const sf::Event& event)  override,
                         running()                           override,
                         focus()                             override;
-    void setPosition(const float& x, const float& y);
-    void setText(const std::string& string);
+    void                setPosition(const float& x, const float& y),
+                        setText(const std::string& string);
+    sf::Vector2f        getPosition() const;
+    Circle              m_circle;
+    sf::Text            m_text;
 protected:
     void draw(sf::RenderTarget& render, sf::RenderStates states) const override;
 private:
-    Circle              m_circle;
-    sf::Text            m_text;
     float               m_radius;
 };

@@ -7,7 +7,7 @@
       "request": "launch",
       "args": [],
       "cwd": "${workspaceFolder}",
-      "program": "${workspaceFolder}/main",
+      "program": "${workspaceFolder}/build/VisuallizationBST",
       "preLaunchTask": "Build"
     }
   ]
