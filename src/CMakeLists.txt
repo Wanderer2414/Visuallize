@@ -24,6 +24,9 @@ target_include_directories(Rectangle PUBLIC ${LIB})
 add_library(RRectangle RoundedRectangle.cpp)
 target_include_directories(RRectangle PUBLIC ${LIB})
 
+add_library(Circle Circle.cpp)
+target_include_directories(Circle PUBLIC ${LIB})
+
 # Component
 
 add_library(Textbox Textbox.cpp)
