@@ -10,10 +10,7 @@ VisuallizationForm::VisuallizationForm(sf::RenderTarget& target):
     if (!m_font.loadFromFile("Oswald-Regular.ttf")) std::runtime_error("Font not found");
 
     addTouch.m_shape.setPosition(10, 10);
-    addTouch.onClick = [&](sf::RenderTarget& target, const MouseEventHandler& handler)->bool {
-        addBox.enter();
-        return false;
-    };
+    addTouch.onClick = addTouch_onClick;
     addBox.text().setFillColor(sf::Color::Black);
     addBox.text().setFont(m_font);
     addBox.text().setPosition(15,20);
@@ -22,6 +19,11 @@ VisuallizationForm::VisuallizationForm(sf::RenderTarget& target):
     children.add(&addTouch);
     children.add(&addBox);
     reDraw();
+}
+bool VisuallizationForm::addTouch_onClick(sf::RenderTarget &target, const MouseEventHandler &handler) {
+    auto form = (VisuallizationForm*)handler.parent;
+    form->addBox.enter();
+    return true;
 }
 bool VisuallizationForm::catchEvent(const sf::Event& event) {
     return false;
