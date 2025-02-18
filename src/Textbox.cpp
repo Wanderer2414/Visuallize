@@ -82,7 +82,10 @@ bool Textbox::catchEvent(const sf::Event& event) {
             case sf::Keyboard::Scancode::Enter: {
                 if (isMultiLine) insert = '\n';
                 else {
-                    if (isOk        && isOk(m_target, handler))         reDraw();
+                    if (m_content!=old_content) {
+                        if (textChanged && textChanged(m_target, handler)) reDraw();
+                        old_content = m_content;
+                    }
                     if (lostFocus   && lostFocus(m_target, EventHandler(this, m_parent, getClock()))) reDraw();
                     isFocus = false;
                     return isRedraw();
@@ -272,7 +275,10 @@ void Textbox::draw(sf::RenderTarget& target, sf::RenderStates state) const {
 }
 void Textbox::leave() {
     isFocus = false;
-    if (isOk && isOk(m_target, handler)) reDraw();
+    if (m_content!=old_content) {
+        if (textChanged && textChanged(m_target, handler)) reDraw();
+        old_content = m_content;
+    }
     if (lostFocus && lostFocus(m_target, EventHandler(this,m_parent, getClock()))) reDraw();
 }
 Textbox::~Textbox() {

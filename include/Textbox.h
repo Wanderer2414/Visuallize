@@ -27,7 +27,7 @@ public:
     sf::Text&           text();
 
     std::function<bool(sf::RenderTarget& target, const TextboxEventHandler& handler)> 
-                        isOk          = nullptr,
+                        textChanged   = nullptr,
                         AfterChanged  = nullptr,
                         BeforeChanged = nullptr;
     ~Textbox();
@@ -41,7 +41,8 @@ private:
                         m_characterSize = 23;
     sf::Color           m_char_color    = sf::Color::Black;
     sf::Vector2f        m_text_pos      = {0,0};
-    std::string         m_content       = "";
+    std::string         m_content       = "",
+                        old_content     = "";
     sf::Text            &m_text;
     Rectangle           text_cursor, 
                         *m_text_cursor  = nullptr;

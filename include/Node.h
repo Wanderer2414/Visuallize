@@ -10,7 +10,8 @@
 class Node : public Controller {
 public:
     Node(sf::RenderTarget& target, void* m_parent, const float& radius, const sf::Font& font, size_t& clock);
-
+    int                 value;
+    Node                *left = nullptr, *right = nullptr, *parent = nullptr;
     virtual bool        catchEvent(const sf::Event& event)  override,
                         running()                           override,
                         focus()                             override;

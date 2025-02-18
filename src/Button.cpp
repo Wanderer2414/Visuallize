@@ -32,8 +32,12 @@ bool Button::catchEvent(const sf::Event& event) {
             }
             if (onFocus && onFocus(m_target, EventHandler(this, m_parent, getClock()))) reDraw(); 
             if (onClick &&onClick(m_target, handler)) reDraw();
+            isFocus = true;
             return isRedraw();
-        } else if (lostFocus && lostFocus(m_target, EventHandler(this, m_parent, getClock()))) return isRedraw();
+        } else if (isFocus && lostFocus && lostFocus(m_target, EventHandler(this, m_parent, getClock()))) {
+            isFocus = false;
+            return isRedraw();
+        }
     } else if (event.type == sf::Event::MouseButtonReleased && onReleased) {
         if (m_shape.contains(static_cast<sf::Vector2f>(sf::Mouse::getPosition(*window)) + relative)) {
             MouseEventHandler handler(event.mouseButton.x, event.mouseButton.y, this, m_parent, getClock());

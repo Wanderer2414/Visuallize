@@ -21,7 +21,8 @@ public:
                         onRunning = nullptr,
                         lostFocus = nullptr;
 protected:
-    bool                isRedraw();
+    bool                isRedraw(),
+                        isFocus = false;
     void                *m_parent,
                         reDraw();
 

@@ -23,13 +23,14 @@ public:
     static bool addTouch_onLostFocus(sf::RenderTarget& target, const EventHandler& clock);
     static bool addBox_Ok(sf::RenderTarget& target, const TextboxEventHandler& handler);
     static bool Node_running(sf::RenderTarget& target, const EventHandler& clock);
+    std::vector<std::vector<Node*>> tree;
+    Node                            *root   = 0;
     ~VisuallizationForm();
     sf::Font                        m_font;
     sf::Text                        m_add_text;
     RoundedRectangle                addReg;
     Textbox                         addBox;
     Button                          addTouch;
-    std::vector<Node*>              m_nodes;
 private:
     bool                            isDrag = false;
     sf::Vector2i                    oldMouse = {0, 0};

@@ -5,9 +5,18 @@
 #include <SFML/System/Vector2.hpp>
 #include <SFML/Window/Event.hpp>
 #include <SFML/Window/Window.hpp>
+#include <cctype>
 #include <cmath>
 #include <stdexcept>
 #include <iostream>
+
+size_t to_int(const std::string& str) {
+    size_t out = 0;
+    for (int i = 0; i<str.size(); i++) {
+        if (std::isdigit(str[i])) out = out*10+str[i]-'0';
+    }
+    return out;
+}
 VisuallizationForm::VisuallizationForm(sf::RenderTarget& target):
             Form(target, nullptr, m_clock),
             addBox(target, this, m_add_text,m_clock),
@@ -22,7 +31,7 @@ VisuallizationForm::VisuallizationForm(sf::RenderTarget& target):
     addBox.text().setFillColor(sf::Color::Black);
     addBox.text().setFont(m_font);
     addBox.text().setPosition(15,20);
-    addBox.isOk = addBox_Ok;
+    addBox.textChanged = addBox_Ok;
     addReg.setFillColor(sf::Color::White);
     setFPS(50);
     children.add(&addTouch);
@@ -39,17 +48,26 @@ bool VisuallizationForm::addTouch_onLostFocus(sf::RenderTarget &target, const Ev
     form->addBox.leave();
     return true;
 }
+void insertBST(Node*& root, Node* node) {
+    if (!root) {
+        root = node;
+        return ;
+    }
+    node->parent = root;
+    if (root->value > node->value) insertBST(root->left, node);
+    else insertBST(root->right, node);
+}
 bool VisuallizationForm::addBox_Ok(sf::RenderTarget &target, const TextboxEventHandler &handler) {
     VisuallizationForm* form = (VisuallizationForm*)handler.parent;
-    Node* node = new Node(target, form, 50, form->m_font, form->m_clock);
-    if (form->m_nodes.size()) {
-        auto tmp = form->m_nodes.back();
-        if (tmp) node->setPosition(tmp->getPosition().x, tmp->getPosition().y + 150);
-    } else node->setPosition(100, 100);
+    Node* node = new Node(target, handler.parent, 30, form->m_font, form->m_clock);
+    node->value = to_int(handler.content);
     node->setText(handler.content);
-    node->m_text.setFillColor(sf::Color::Black);
-    node->onRunning = Node_running;
-    form->m_nodes.push_back(node);
+    insertBST(form->root, node);
+    if (node->parent) {
+        auto pos = node->parent->getPosition();
+        if (node->parent->right == node) node->setPosition(pos.x + 50, pos.y + 100);
+        else node->setPosition(pos.x - 50, pos.y + 100);
+    } else node->setPosition(100,100);
     form->children.add(node);
     return true;
 }
@@ -87,6 +105,13 @@ bool VisuallizationForm::running() {
 bool VisuallizationForm::focus() {
     return false;
 }
+void deleteWholeTree(Node*& root) {
+    if (!root) return ;
+    deleteWholeTree(root->left);
+    deleteWholeTree(root->right);
+    delete root;
+    root = 0;
+}
 VisuallizationForm::~VisuallizationForm() {
-    for (auto i:m_nodes) delete i;
+    deleteWholeTree(root);
 }
