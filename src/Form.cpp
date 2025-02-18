@@ -8,6 +8,8 @@
 #include <cmath>
 #include <ctime>
 #include <stdexcept>
+#include <string>
+#include <iostream>
 #include <thread>
 
 Form::Children::Children(Form& parent): m_parent(parent) {};
@@ -60,7 +62,7 @@ void Form::close() {
 void Form::setFPS(const size_t& fps) {
     m_spf = 1000/fps;
 }
-void Form::run() {  
+void Form::run() { 
     #define now std::chrono::system_clock::now()
     auto    start = now,
             last_time = start;
@@ -73,10 +75,14 @@ void Form::run() {
 
         if (onRunning && onRunning(m_target, EventHandler(this, m_parent, m_clock))) reDraw();
 
-        for (int i = 0; i<children.size(); i++)
+        for (int i = 0; i<children.size(); i++) {
             if (children[i]->running()) reDraw();
+            if (children[i]->onRunning && children[i]->onRunning(m_target, EventHandler(children[i], this, m_clock)))
+                reDraw();
+        }
 
         while (m_window.pollEvent(event)) {
+            if (catchEvent(event)) reDraw();
             for (int i = 0; i<children.size(); i++) 
                 if (children[i]->catchEvent(event)) reDraw();
 

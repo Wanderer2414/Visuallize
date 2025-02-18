@@ -273,7 +273,7 @@ void Textbox::draw(sf::RenderTarget& target, sf::RenderStates state) const {
 void Textbox::leave() {
     isFocus = false;
     if (isOk && isOk(m_target, handler)) reDraw();
-    if (lostFocus && lostFocus(m_target, EventHandler(this, m_parent, getClock()))) reDraw();
+    if (lostFocus && lostFocus(m_target, EventHandler(this,m_parent, getClock()))) reDraw();
 }
 Textbox::~Textbox() {
     
