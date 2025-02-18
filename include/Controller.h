@@ -1,4 +1,5 @@
 #pragma once
+#include "EventHandler.h"
 #include <SFML/Graphics/Drawable.hpp>
 #include <SFML/Graphics/RenderStates.hpp>
 #include <SFML/Graphics/RenderTarget.hpp>
@@ -15,7 +16,7 @@ public:
 
     float               getClock() const;
 
-    std::function<bool(sf::RenderTarget& target, const size_t& clock)>
+    std::function<bool(sf::RenderTarget& target, const EventHandler& handler)>
                         onFocus = nullptr,
                         onRunning = nullptr,
                         lostFocus = nullptr;
