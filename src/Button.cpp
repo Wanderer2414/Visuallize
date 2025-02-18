@@ -8,11 +8,11 @@ Button::Button(sf::RenderTarget& target, void* parent, ReShape& shape, size_t& c
                 m_shape(shape) {}
                 
 bool Button::focus() {
-    if (onFocus) onFocus(m_target, getClock());
+    if (onFocus) onFocus(m_target, EventHandler(this, m_parent, getClock()));
     return false;
 }
 bool Button::running() {
-    if (onRunning) return onRunning(m_target, getClock());
+    if (onRunning) return onRunning(m_target, EventHandler(this, m_parent, getClock()));
     return false;
 }
 bool Button::catchEvent(const sf::Event& event) {
@@ -25,10 +25,10 @@ bool Button::catchEvent(const sf::Event& event) {
                 case sf::Mouse::Button::Right: handler.button = ButtonState::Right; break;
                 default: handler.button = ButtonState::Middle; break;
             }
-            if (onFocus && onFocus(m_target, getClock())) reDraw(); 
+            if (onFocus && onFocus(m_target, EventHandler(this, m_parent, getClock()))) reDraw(); 
             if (onClick &&onClick(m_target, handler)) reDraw();
             return isRedraw();
-        } else if (lostFocus && lostFocus(m_target, getClock())) return isRedraw();
+        } else if (lostFocus && lostFocus(m_target, EventHandler(this, m_parent, getClock()))) return isRedraw();
     } else if (event.type == sf::Event::MouseButtonReleased && onReleased) {
         if (m_shape.contains(static_cast<sf::Vector2f>(sf::Mouse::getPosition(*window)))) {
             MouseEventHandler handler(event.mouseButton.x, event.mouseButton.y, this, m_parent, getClock());

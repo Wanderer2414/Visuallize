@@ -12,6 +12,7 @@ VisuallizationForm::VisuallizationForm(sf::RenderTarget& target):
 
     addTouch.m_shape.setPosition(10, 10);
     addTouch.onClick = addTouch_onClick;
+    addTouch.lostFocus = addTouch_onLostFocus;
     addBox.text().setFillColor(sf::Color::Black);
     addBox.text().setFont(m_font);
     addBox.text().setPosition(15,20);
@@ -25,6 +26,11 @@ VisuallizationForm::VisuallizationForm(sf::RenderTarget& target):
 bool VisuallizationForm::addTouch_onClick(sf::RenderTarget &target, const MouseEventHandler &handler) {
     auto form = (VisuallizationForm*)handler.parent;
     form->addBox.enter();
+    return true;
+}
+bool VisuallizationForm::addTouch_onLostFocus(sf::RenderTarget &target, const EventHandler& handler) {
+    auto form = (VisuallizationForm*)handler.parent;
+    form->addBox.leave();
     return true;
 }
 bool VisuallizationForm::addBox_Ok(sf::RenderTarget &target, const TextboxEventHandler &handler) {

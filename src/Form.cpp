@@ -71,7 +71,7 @@ void Form::run() {
         
         if (running()) reDraw();
 
-        if (onRunning && onRunning(m_target, m_clock)) reDraw();
+        if (onRunning && onRunning(m_target, EventHandler(this, m_parent, m_clock))) reDraw();
 
         for (int i = 0; i<children.size(); i++)
             if (children[i]->running()) reDraw();

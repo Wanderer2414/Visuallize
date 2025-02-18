@@ -23,7 +23,7 @@ Textbox::Textbox(sf::RenderTarget& target, void* parent, sf::Text& text, size_t&
 bool Textbox::focus() {
     if (!isFocus) return false;
     next_time = 0;
-    if (onFocus) return onFocus(m_target, getClock());
+    if (onFocus) return onFocus(m_target, EventHandler(this, m_parent, getClock()));
     else return false;
 }
 bool Textbox::running() {
@@ -83,7 +83,7 @@ bool Textbox::catchEvent(const sf::Event& event) {
                 if (isMultiLine) insert = '\n';
                 else {
                     if (isOk        && isOk(m_target, handler))         reDraw();
-                    if (lostFocus   && lostFocus(m_target, getClock())) reDraw();
+                    if (lostFocus   && lostFocus(m_target, EventHandler(this, m_parent, getClock()))) reDraw();
                     isFocus = false;
                     return isRedraw();
                 }
@@ -258,7 +258,7 @@ void Textbox::setCursorIndex(const unsigned int& index) {
 
 void Textbox::enter() {
     isFocus = true;
-    if (onFocus && onFocus(m_target, getClock())) reDraw();
+    if (onFocus && onFocus(m_target, EventHandler(this, m_parent, getClock()))) reDraw();
 }
 
 void Textbox::reset_text_cursor() {
@@ -272,7 +272,8 @@ void Textbox::draw(sf::RenderTarget& target, sf::RenderStates state) const {
 }
 void Textbox::leave() {
     isFocus = false;
-    if (lostFocus && lostFocus(m_target, getClock())) reDraw();
+    if (isOk && isOk(m_target, handler)) reDraw();
+    if (lostFocus && lostFocus(m_target, EventHandler(this, m_parent, getClock()))) reDraw();
 }
 Textbox::~Textbox() {
     
